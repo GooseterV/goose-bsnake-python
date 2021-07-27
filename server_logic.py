@@ -59,10 +59,22 @@ def choose_move(data: dict) -> str:
 
     # Don't allow your Battlesnake to move back in on it's own neck
     possible_moves = avoid_my_neck(my_head, my_body, possible_moves)
+    my_neck = possible_moves.my_neck
 
     # TODO: Using information from 'data', find the edges of the board and don't let your Battlesnake move beyond them
     board_height = data["board"]["height"]
     board_width = data["board"]["width"]
+    # in progress
+    if my_head["x"] == board_width:
+        if my_head["y"] == board_width:
+            if my_neck["x"] == my_head["y"] -1:
+                possible_moves.remove("right")
+            elif my_neck["x"] == my_head["x"] +1:
+                possible_moves.remove("up")
+    elif my_head["x"] == 0:
+        possible_moves.remove("left")
+    # Checking y
+
 
     # TODO Using information from 'data', don't let your Battlesnake pick a move that would hit its own body
 
